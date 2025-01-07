@@ -1,6 +1,6 @@
 package io.api.produtos.controller;
 
-import org.springframework.beans.BeanUtils;
+//import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.api.produtos.dto.ProdutoDto;
 import io.api.produtos.dto.ProdutoUpdateNomeDto;
 import io.api.produtos.model.ProdutoModel;
 import io.api.produtos.service.ProdutoService;
@@ -48,10 +47,12 @@ public class ProdutoController {
 		return ResponseEntity.status(OK).body(produtoService.findAll());
 	}
 	
-//	@GetMapping("/{id}")
-//	public ResponseEntity<Optional<ProdutoModel>> findById(@PathVariable Long id){
-//		return ResponseEntity.status(OK).body(produtoService.findById(id));
-//	}
+	/*
+	@GetMapping("/{id}")
+	public ResponseEntity<Optional<ProdutoModel>> findById(@PathVariable Long id){
+		return ResponseEntity.status(OK).body(produtoService.findById(id));
+	}
+	*/
 	
 	
 	@GetMapping("/{codigo}")
@@ -71,16 +72,17 @@ public class ProdutoController {
 		return ResponseEntity.status(OK).body(produtoService.saveAll(produtos)); 
 	}
 	
-//	@PostMapping
-//	public ResponseEntity<ProdutoModel> saveProduto(@Valid @RequestBody ProdutoDto produtoDto){
-//		ProdutoModel produto = new ProdutoModel();
-//		
-//		BeanUtils.copyProperties(produtoDto, produto);
-//		
-//		System.out.println(produtoDto.toString());
-//
-//		return ResponseEntity.status(OK).body(produtoService.saveOne(produto));
-//	}
+	/*
+	@PostMapping
+	public ResponseEntity<ProdutoModel> saveProduto(@Valid @RequestBody ProdutoDto produtoDto){
+		ProdutoModel produto = new ProdutoModel();
+		
+		BeanUtils.copyProperties(produtoDto, produto);
+		
+		System.out.println(produtoDto.toString());
+
+		return ResponseEntity.status(OK).body(produtoService.saveOne(produto));
+	}*/
 	
 	@PatchMapping("/{codigo}")
 	public ResponseEntity<Object> updateProduto(@PathVariable(value = "codigo") Long codigo, @RequestBody ProdutoUpdateNomeDto produtoDto){
