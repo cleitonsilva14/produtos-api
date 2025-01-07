@@ -10,6 +10,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_produto")
@@ -19,12 +22,15 @@ public class ProdutoModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull(message = "Deve ser informado o código do produto")
 	@Column(name = "codigo", unique = true)
 	private Long codigo;
 	
+	@NotBlank(message = "Nome deve ser informado")
 	@Column(name = "nome", length = 255)
 	private String nome;
 	
+	//@DecimalMin(value = "0.0", message = "valor do produtos não pode ser null",  inclusive = false)
 	@Column(name = "preco")
 	private BigDecimal preco;
 	
