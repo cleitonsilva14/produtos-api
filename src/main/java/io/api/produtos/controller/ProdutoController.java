@@ -67,15 +67,20 @@ public class ProdutoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ProdutoModel> saveProduto(@Valid @RequestBody ProdutoDto produtoDto){
-		ProdutoModel produto = new ProdutoModel();
-		
-		BeanUtils.copyProperties(produtoDto, produto);
-		
-		System.out.println(produtoDto.toString());
-
-		return ResponseEntity.status(OK).body(produtoService.saveOne(produto));
+	public ResponseEntity<List<ProdutoModel>> saveProdutos(@Valid @RequestBody List<ProdutoModel> produtos){
+		return ResponseEntity.status(OK).body(produtoService.saveAll(produtos)); 
 	}
+	
+//	@PostMapping
+//	public ResponseEntity<ProdutoModel> saveProduto(@Valid @RequestBody ProdutoDto produtoDto){
+//		ProdutoModel produto = new ProdutoModel();
+//		
+//		BeanUtils.copyProperties(produtoDto, produto);
+//		
+//		System.out.println(produtoDto.toString());
+//
+//		return ResponseEntity.status(OK).body(produtoService.saveOne(produto));
+//	}
 	
 	@PatchMapping("/{codigo}")
 	public ResponseEntity<Object> updateProduto(@PathVariable(value = "codigo") Long codigo, @RequestBody ProdutoUpdateNomeDto produtoDto){
